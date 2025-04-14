@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8 bg-gray-100">
+  <div class="max-w-md mx-auto bg-white p-8 shadow rounded">
+    <h1 class="text-2xl font-bold mb-6">Make Payment</h1>
+
+    <p><strong>Name:</strong> {{ student.name }}</p>
+    <p><strong>College ID:</strong> {{ student.college_id }}</p>
+    <p><strong>Payment Status:</strong> {{ student.payment_status }}</p>
+
+    {% if student.payment_status != 'Paid' %}
+      <form action="/payment" method="POST">
+        <!-- Hidden ID used for backend logic -->
+        <input type="hidden" name="student_id" value="{{ student.id }}">
+
+        <label for="amount" class="block text-sm font-semibold mb-1">Amount to Pay:</label>
+        <!-- Changed input type to number for better validation -->
+        <input type="number" id="amount" name="amount" value="{{ student.amount_payable if student.amount_payable else 0 }}" step="0.01" class="w-full mb-3 px-4 py-2 border border-gray-300 rounded">
+
+        <button type="submit" class="w-full bg-green-500 text-white py-2 rounded">
+          Pay Now
+        </button>
+      </form>
+    {% else %}
+      <p class="text-green-500 mt-4">✅ Payment already completed.</p>
+    {% endif %}
+
+    <a href="/student_dashboard" class="inline-block mt-6 text-blue-500 underline">Back to Dashboard</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8 bg-gray-100">
+  <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white p-4 shadow rounded">
+      <h2 class="text-lg font-semibold">Total Students</h2>
+      <p class="text-2xl">{{ stats.total_students }}</p>
+    </div>
+    <div class="bg-white p-4 shadow rounded">
+      <h2 class="text-lg font-semibold">Occupied Rooms</h2>
+      <p class="text-2xl">{{ stats.occupied_rooms }}</p>
+    </div>
+    <div class="bg-white p-4 shadow rounded">
+      <h2 class="text-lg font-semibold">Pending Payments</h2>
+      <p class="text-2xl">{{ stats.pending_payments }}</p>
+    </div>
+  </div>
+  <a href="/students" class="mt-6 inline-block text-blue-500 underline">View Students</a>
+  <a href="/payments" class="ml-4 inline-block text-blue-500 underline">Manage Payments</a>
+  <a href="/logout" class="ml-4 inline-block text-red-500 underline">Logout</a>
+</body>
+</html>

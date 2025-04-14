@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Students</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8 bg-gray-100">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Student List</h1>
+    <a href="/add_student" class="bg-blue-500 text-white px-4 py-2 rounded">Add Student</a>
+  </div>
+  <table class="w-full bg-white shadow-md rounded">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="p-2 text-left">Name</th>
+        <th class="p-2 text-left">Room</th>
+        <th class="p-2 text-left">Payment Status</th>
+        <th class="p-2 text-left">Check-In</th>
+        <th class="p-2 text-left">Check-Out</th>
+        <th class="p-2 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr class="border-t">
+        <td class="p-2">{{ student.name }}</td>
+        <td class="p-2">{{ student.room_id }}</td>
+        <td class="p-2">{{ student.payment_status }}</td>
+        <td class="p-2">{{ student.check_in }}</td>
+        <td class="p-2">{{ student.check_out or '-' }}</td>
+        <td class="p-2">
+          {% if not student.check_out %}
+          <a href="/checkout/{{ student.id }}" class="text-red-500 underline">Check Out</a>
+          {% else %}
+          <span class="text-gray-500">Checked Out</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="/dashboard" class="inline-block mt-6 text-blue-500 underline">Back to Dashboard</a>
+</body>
+</html>
